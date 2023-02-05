@@ -6,7 +6,7 @@ number_of_processes="${1}"
 curr_user=$(whoami)
 echo "$ ! is" $($!)  
 echo "I'm ${curr_user}"
-
+if ! [[ $(echo $1 | sed -En 's/(^[1-9]+$)/\1/p') -gt 0 ]] ; then echo we need 1 argument of an integer; exit 1; fi 
 if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 # this checks the user id -u returns a number represending the user, if you do sudo id -u you get 0 and user name is root
 # B
@@ -16,7 +16,7 @@ while [[ ${curr_process} -lt ${number_of_processes} ]]; do
        sleep 3600 &
        echo adding $! to prcess list
        processes_list+=($!)
-       
+       echo  
        curr_process=$(( ${curr_process} + 1 ))
 done
 # C
