@@ -1,0 +1,47 @@
+
+
+The difference:
+Serverless Saas is software as a service, means that the management of the infrastructure and cross-server communication architecture is in the hands of our service provider. Such as AWS or Azure are examples of this.
+IaaS is Infrastructure as a service, this means we are buying a system and the way it works. An example of this would be github?
+Pros for Saas serverless: 
+We do not have to deal with maintaining hardware, servers and low-level infrastructure. 
+Pay on demand - we pay per usage of computing power. This allows us to scale or descale very quickly and cost effectively.
+Cons for Saas: 
+If not built properly - can be costly, ie: inefficient code
+Lack of flexibility and dependent on our service providers technology
+If we choose Iaas we will need to maintain our servers, and we will also need to understand how to properly manage our memory-cpu-gpu usages for our program to run efficiently.
+
+2.  Type 1 virtual machines are like an os.system that runs directly on top of the (forgot the name, sits between the os and the hardware) but its job is to connect the computer hardware and manages the virtualization of the program , where as type 2 sits on top or the OS and the os manages the virtualization of the memory. It can also run several images of the same code and share virtual memory space. 
+	Type 2 is much more useful in these cases of Iaas because we do not need to directly install our program on the hardware, but rather we can create instances of our program with all the necessary dependencies. Each such program is an image, of which we can create containers(instances) of. This is much more efficient because in the case of a crash, our operating system does not need a reboot, but rather we just need to spin up a new instance of the image.
+
+3. The issue described is the process running our data base has crashed. The reason this process could have crashed can be very wide. One of which could be a bug in the code, which causes it to crash. In this case we can re-run the image of our database and look at the logs to understand why it crashed, in the log files of the docker image. We can also do docker ps command to see what processes are running, and find which crashed, and when. 
+
+We might also find that the process and database is too large and cannot run in the limits of the memory. 
+
+
+Questions: type 1 vs type 2 Iaas??
+Docker is what kind of hypervisor?
+How to do regex to make sure number is less than x?
+
+
+Question 2.
+The code gets an argument (it expects a number int, but does not defend against this)
+It makes sure that the program is run through root user, therefore to work the program you must do: sudo ./proc2
+END OF A
+With the number you gave as an argument (one and only, also no checks for this) the program loops and creates process of sleep for 3600 seconds.
+For each one of these sleep processes created it adds its process id to a list.
+END OF B
+In this part it collects all pid’s with the name ‘sleep’ from the machine using the function ps.  And adds it to a second list, process ids from sleep
+The program then collects a list of all unique processes from both lists, (those that where created in previous runs and those created in the current run)
+The program then attempts to kill all of them – YET there is a bug, and the code only kills the first pid in the list, because the way the arguments (pids) where given to the kill -9 function where not correct. This was corrected by doing a loop over each process in the combines list and killing it.
+END OF C
+In the last part, the program creates a new user called linuxtestuser without a password. 
+Loops over the given amount of times mentioned in the arg given, and echos test statement through the user we created. 
+END of D
+
+Part D.
+Needed checks: 
+Make sure the argument is an integer
+Make sure it is not bigger than the available memory in the computer, this we can do by calculating how much memory a sleep process uses and make sure its less than the available cpu and ram for the machine
+
+
